@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            background-color: #5441f9d1;
+        }
+        .container {
+            height: auto;
+            width: 400px;
+            background-color: rgb(0, 0, 0);
+            border: 1px solid rgb(255, 255, 255);
+            margin: auto;
+            margin-top: 50px;
+            padding: 10px;
+            font: 1.2rem "Fira Sans", sans-serif;
+            border-radius: 10px;
+            position: relative;
+            color: aliceblue;
+        }
+        .button {
+            width: 59px;
+            height: 54px;
+            color: rgba(240, 248, 255, 0);
+            position: absolute;
+            left: 303px;
+            top: 103px;
+            background-color: #8e595900;
+            border-radius: 50%;
+        }
+        img {
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+        img:hover {
+            width: 33px;
+            height: 33px;
+        }
+        input {
+            width: 270px;
+            height: 30px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: aliceblue;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(0 0 0);
+    border: 2px solid white;
+    color: rgb(255 255 255);
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TODO APP</h1>
+        <input type="text" id="taskInput">
+        <div class="button" onclick="addTask()">
+            <img src="https://w7.pngwing.com/pngs/270/706/png-transparent-check-mark-computer-icons-green-tick-mark-angle-text-logo.png" alt="">
+        </div>
+        <div id="taskList"></div>
+    </div>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var taskList = document.getElementById("taskList");
+
+            if (input.value.trim() !== "") {
+                var taskDiv = document.createElement("div");
+                taskDiv.className = "task";
+
+                var taskText = document.createElement("span");
+                taskText.innerText = input.value;
+
+                var deleteButton = document.createElement("button");
+                deleteButton.className = "delete-button";
+                deleteButton.innerText = "Delete";
+                deleteButton.addEventListener("click", function() {
+                    taskDiv.remove();
+                });
+
+                taskDiv.appendChild(taskText);
+                taskDiv.appendChild(deleteButton);
+
+                taskList.appendChild(taskDiv);
+                input.value = "";
+            } else {
+                alert("Please enter a task");
+            }
+        }
+    </script>
+</body>
+</html>
